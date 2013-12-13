@@ -1,11 +1,11 @@
 # Foundation Filestyle
 
-Foundation Filestyle is a quick and simple plugin to help style your form's file upload inputs.
+Foundation Filestyle is a quick and simple plugin to help style your form's file upload inputs
+to better match the look of the [Foundation 5 Framework](http://foundation.zurb.com/).
 
-Maintained by [Colin Viebrock](https://github.com/cviebrock)
-
-Adapted from [Bootstrap Filestyle](https://github.com/markusslima/bootstrap-filestyle/)
-by [Markus Lima](https://github.com/markusslima)
+Maintained by [Colin Viebrock](https://github.com/cviebrock), and _heavily_ adapted
+from [Bootstrap Filestyle](https://github.com/markusslima/bootstrap-filestyle/)
+by [Markus Lima](https://github.com/markusslima).
 
 
 ### Getting Started, Documentation and Examples
