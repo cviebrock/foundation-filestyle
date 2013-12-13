@@ -141,6 +141,7 @@
         constructor: function () {
             var _self = this,
                 button = '',
+                label = '',
                 id = this.$element.attr('id'),
                 files = [];
 
@@ -149,19 +150,41 @@
                 this.$element.attr({'id': id});
             }
 
-            button = '<label for="'+id+'" class="'+this.options.classButton+'" style="margin-bottom:0;">'+
-                this.htmlIcon()+
-                '<span>'+this.options.buttonText+'</span>'+
+            if (this.options.iconBefore) {
+                button = this.htmlIcon()+' '+this.options.buttonText;
+            } else {
+                button = this.options.buttonText+' '+this.htmlIcon();
+            }
+
+            label = '<label for="'+id+'" class="'+this.options.classButton+'" style="margin-bottom:0;">'+
+                button+
                 '</label>';
 
-            this.$elementFilestyle = $(
-                '<div class="foundation-filestyle row collapse">'+
-                '<div class="small-3 columns">'+button+'</div>'+
-                '<div class="small-9 columns">'+this.htmlInput()+'</div>'+
-                '</div>'
-            );
+            if (this.options.buttonBefore) {
+                this.$elementFilestyle = $(
+                    '<div class="foundation-filestyle row collapse">'+
+                    '<div class="small-3 columns">'+label+'</div>'+
+                    '<div class="small-9 columns">'+this.htmlInput()+'</div>'+
+                    '</div>'
+                );
+            } else {
+                this.$elementFilestyle = $(
+                    '<div class="foundation-filestyle row collapse">'+
+                    '<div class="small-9 columns">'+this.htmlInput()+'</div>'+
+                    '<div class="small-3 columns">'+label+'</div>'+
+                    '</div>'
+                );
+            }
 
             var $label = this.$elementFilestyle.find('label');
+
+            if (this.options.buttonBefore) {
+                $label.addClass('prefix');
+            } else {
+                $label.addClass('postfix');
+            }
+
+
             var $labelFocusableContainer = $label.parent();
 
             $labelFocusableContainer
@@ -236,10 +259,12 @@
     };
 
     $.fn.filestyle.defaults = {
+        'buttonBefore': true,
+        'iconBefore': true,
         'buttonText': 'Choose file',
         'input': true,
         'icon': true,
-        'classButton': 'prefix inline button',
+        'classButton': 'inline button',
         'classInput': '',
         'classIcon': 'fa fa-folder-open'
     };
@@ -253,6 +278,8 @@
     $('.filestyle').each(function () {
         var $this = $(this),
             options = {
+                'buttonBefore': $this.attr('data-buttonBefore') === 'false' ? false : true,
+                'iconBefore': $this.attr('data-iconBefore') === 'false' ? false : true,
                 'buttonText': $this.attr('data-buttonText'),
                 'input': $this.attr('data-input') === 'false' ? false : true,
                 'icon': $this.attr('data-icon') === 'false' ? false : true,
